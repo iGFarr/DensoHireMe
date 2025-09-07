@@ -228,3 +228,71 @@ ul {
 .navbar.is-open .brand__title {
   color: #000;
 }
+
+/* --- Readability & link polish for timeline cards --- */
+.section-header h1 {
+  font-size: clamp(28px, 5vw, 44px);
+  letter-spacing: -0.015em;
+}
+.section-header .muted {
+  font-size: 1rem;
+}
+
+.timeline .tl-card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  padding: 16px 18px;
+}
+
+.tl-title {
+  font-weight: 800;
+  line-height: 1.35;
+  margin: 0 0 8px;
+}
+
+.tl-date {
+  display: inline-block;
+  margin-right: 10px;
+  background: #000;
+  color: #fff;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  letter-spacing: 0.02em;
+}
+
+.tl-points {
+  margin: 0;
+  padding-left: 1.1rem;
+}
+.tl-points li {
+  margin: 8px 0;
+  line-height: 1.7;
+  font-size: 1.02rem;
+}
+
+/* External links inside cards */
+.tl-card a.ext-link {
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.tl-card a.ext-link:hover {
+  filter: brightness(0.9);
+  text-decoration-thickness: 2px;
+}
+
+/* Visual break before the Community note */
+.timeline hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 14px 0 10px;
+}
+
+/* Slightly larger base type for page content */
+.page-content {
+  line-height: 1.7;
+  font-size: 1.03rem;
+}
