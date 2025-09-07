@@ -43,6 +43,7 @@ body {
 .brand {
   color: var(--ink);
   font-weight: 800;
+  background: none;
   text-decoration: none;
 }
 
@@ -89,7 +90,47 @@ body {
   width: 40px;
   height: 40px;
   border-radius: 10px;
+  position: relative;
+  overflow: hidden;
 }
+.nav-toggle .hamburger {
+  position: relative;
+  width: 22px;
+  height: 14px;
+}
+.nav-toggle .bar {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: #fff;
+  border-radius: 2px;
+  transition: transform 0.4s ease, opacity 0.4s ease, width 0.4s ease;
+}
+.nav-toggle .bar1 {
+  top: 0;
+}
+.nav-toggle .bar2 {
+  top: 6px;
+}
+.nav-toggle .bar3 {
+  top: 12px;
+}
+/* collapse to single middle line when expanded */
+.nav-toggle[aria-expanded="true"] .bar1 {
+  transform: translateY(6px);
+  opacity: 0;
+}
+.nav-toggle[aria-expanded="true"] .bar3 {
+  transform: translateY(-6px);
+  opacity: 0;
+}
+.nav-toggle[aria-expanded="true"] .bar2 {
+  transform: none;
+  opacity: 1;
+  width: 22px;
+}
+
 .nav-toggle[aria-expanded="true"] {
   background: #dc0032;
   color: #fff;
@@ -111,20 +152,30 @@ body {
   }
 
   .nav {
-    display: none;
-    position: static;
     width: 100%;
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+    transform: translateY(-4px);
+    transition: max-height 0.2s ease, opacity 0.3s ease, transform 0.3s ease;
+    position: static;
     background: transparent;
-    padding: 8px 0 0;
+    padding: 0;
+    display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     gap: 8px;
   }
   .nav.is-open {
-    display: flex;
+    max-height: 60vh; /* enough space for links */
+    opacity: 1;
+    transform: translateY(0);
+    padding: 8px 0 0;
   }
   .nav__link {
     width: 100%;
+    max-width: 520px;
+    text-align: center;
     padding: 10px 4px;
   }
 
@@ -169,6 +220,7 @@ ul {
   border-radius: 999px;
   text-decoration: none;
 }
+
 .download-btn:hover {
   filter: brightness(1.05);
 }
