@@ -7,9 +7,19 @@ const DownloadResume: React.FC = () => (
     <a className="download-btn" href="/IFarrDensoResume.pdf" download>
       Download PDF
     </a>
+    <p className="mt-1">
+      <a
+        className="ext-link"
+        href="/IFarrDensoResume.pdf"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        View online
+      </a>
+    </p>
     <p className="muted mt-1">
-      Place <code>resume.pdf</code> in your project’s <code>public/</code>{" "}
-      folder.
+      Place <code>IFarrDensoResume.pdf</code> in your project’s{" "}
+      <code>public/</code> folder.
     </p>
   </main>
 );

@@ -7,13 +7,18 @@ const NavBar: React.FC = () => {
   return (
     <header className={`navbar ${menuOpen ? "is-open" : ""}`}>
       <div className="navbar__inner">
-        <NavLink to="/" className="brand">
-          <div className="brand">
-            <span className="brand__title">Isaac Farr 865-659-6974</span>
-            <br />
-            <span className="brand__title">isaacgfarr@live.com</span>
-          </div>
-        </NavLink>
+        <div className="nav-contact">
+          <a
+            href="tel:8656596974"
+            className="nav-contact-text"
+            style={{ display: "block", marginBottom: "4px" }}
+          >
+            Isaac Farr 865-659-6974
+          </a>
+          <a href="mailto:isaacgfarr@live.com" className="nav-contact-text">
+            isaacgfarr@live.com
+          </a>
+        </div>
         <button
           className="nav-toggle"
           aria-label="Toggle navigation"

@@ -40,15 +40,15 @@ body {
   align-items: center;
 }
 
-.brand {
+.nav-contact {
   color: var(--ink);
   font-weight: 800;
   background: none;
   text-decoration: none;
 }
 
-.brand__title {
-  font-size: 1.05rem;
+.nav-contact-text {
+  font-size: 0.975rem;
   color: var(--ink);
 }
 
@@ -225,7 +225,7 @@ ul {
   filter: brightness(1.05);
 }
 
-.navbar.is-open .brand__title {
+.navbar.is-open .nav-contact-text {
   color: #000;
 }
 
