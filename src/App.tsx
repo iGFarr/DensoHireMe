@@ -16,7 +16,6 @@ const App: React.FC = () => {
         <Route path="/" element={<MyDensoHistory />} />
         <Route path="/skills" element={<SkillsExperience />} />
         <Route path="/contact" element={<Contact />} />
-        <Route path="/resume" element={<DownloadResume />} />
       </Routes>
     </Router>
   );

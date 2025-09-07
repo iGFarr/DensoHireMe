@@ -51,11 +51,11 @@ const MyDensoHistory: React.FC = () => (
       </article>
       <hr></hr>
 
-      {/* 2018–2022 */}
+      {/* 2018–2024 */}
       <article className="tl-item">
         <div className="tl-marker" aria-hidden="true" />
         <div className="tl-card">
-          <h2>2018 – 2022</h2>
+          <h2>2018 – 2024</h2>
 
           <h3 className="tl-title">Cross‑industry Manufacturing & Education</h3>
           <ul className="tl-points">
@@ -105,8 +105,15 @@ const MyDensoHistory: React.FC = () => (
               Started as a Software/Mobile Engineer at{" "}
               <strong>Ally Financial</strong> in Jan 2022; built React Native &
               iOS features for banking/invest products, working across UX,
-              product, and CI/CD.
+              product, and CI/CD. Worked here until Jan 2025.
               <span className="resume-cite"> (See resume for details) </span>
+            </li>
+            <li>
+              Completed a{" "}
+              <strong>B.S. in Game Programming & Development</strong> at
+              Southern New Hampshire University from March 2022 to December
+              2023, gaining proficiency in C++, C#, Python, Unreal Engine, Adobe
+              tools, design principles and much much more.
             </li>
           </ul>
         </div>
@@ -127,7 +134,7 @@ const MyDensoHistory: React.FC = () => (
               building/launching <em>Aerial Raider</em> for{" "}
               <a
                 className="ext-link"
-                href="https://apps.apple.com/us/search?term=aerial%20raider"
+                href="https://apps.apple.com/us/app/aerial-raider/id6745239973"
                 target="_blank"
                 rel="noopener noreferrer"
               >

@@ -66,13 +66,9 @@ const NavBar: React.FC = () => {
           >
             Contact
           </NavLink>
-          <NavLink
-            to="/resume"
-            onClick={() => setMenuOpen(false)}
-            className="nav__link"
-          >
+          <a href="/IFarrDensoResume.pdf" download className="nav__link">
             Download Resume
-          </NavLink>
+          </a>
         </nav>
       </div>
 

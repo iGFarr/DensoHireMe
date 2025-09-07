@@ -296,3 +296,158 @@ ul {
   line-height: 1.7;
   font-size: 1.03rem;
 }
+
+/* ==========================
+   Skills & Experience polish
+   ========================== */
+
+/* Section spacing */
+.section-block {
+  margin: 22px 0;
+}
+
+/* Reusable card skin (timeline cards already have .tl-card) */
+.card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  padding: 16px 18px;
+}
+.card h3 {
+  margin-top: 2px;
+}
+
+/* Small all-caps label used in summary/CTA */
+.eyebrow {
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #000;
+  margin: 0 0 6px;
+}
+
+/* Summary grid (3-up → 1-up) */
+.summary__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+@media (max-width: 860px) {
+  .summary__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Chip lists for skills */
+.chiplist {
+  list-style: none;
+  padding: 0;
+  margin: 8px 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.chiplist .chip {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  padding: 6px 10px;
+  border: 1px solid var(--border);
+  background: #fff;
+  font-weight: 600;
+  box-shadow: var(--shadow-sm);
+}
+
+/* Experience cards */
+.exp {
+  padding-top: 14px;
+  padding-bottom: 14px;
+}
+.exp__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 6px;
+}
+.exp__meta {
+  color: #555;
+  font-size: 0.95rem;
+  white-space: nowrap;
+}
+.exp__points {
+  margin: 0;
+  padding-left: 1.1rem;
+}
+.exp__points li {
+  margin: 6px 0;
+  line-height: 1.7;
+}
+
+/* CTA chips */
+.chiprow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+}
+.chip--action {
+  background: #000;
+  color: #fff;
+  text-decoration: none;
+  border: none;
+}
+.chip--action:hover {
+  filter: brightness(1.05);
+}
+
+/* Generic external link style (beyond timeline cards) */
+.ext-link {
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.ext-link:hover {
+  text-decoration-thickness: 2px;
+  filter: brightness(0.9);
+}
+
+/* Tweak headings and body text rhythm */
+.page-content h2 {
+  margin-top: 1.1rem;
+}
+.page-content h3 {
+  margin-top: 0.8rem;
+}
+.page-content p {
+  margin: 0.3rem 0 0.8rem;
+}
+
+/* Respect prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  .nav,
+  .nav.is-open {
+    transition: none;
+  }
+}
+
+.chip--action {
+  background: var(--ink);
+  color: white;
+  padding: 10px 16px;
+  border-radius: 20px;
+  font-weight: 600;
+  transition: all 0.2s ease-in-out;
+  margin-right: 8px;
+  display: inline-block;
+  text-decoration: none;
+}
+
+.chip--action:hover,
+.chip--action:focus {
+  background: var(--primary);
+  filter: brightness(1.1);
+  transform: scale(1.05);
+  text-decoration: none;
+}
