@@ -1,0 +1,178 @@
+/* Global styles for the Denso Hire Me portfolio. */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  color: #333;
+  background-color: var(--bg, #f6fbf8);
+}
+:root {
+  --primary: #000000;
+  --ink: #dc0032;
+  --border: #e6eae8;
+  --bg: #f7f7f7;
+  --radius: 14px;
+  --shadow-sm: 0 4px 14px rgba(0, 0, 0, 0.06);
+}
+
+/* Sticky navbar */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(8px);
+  border-bottom: 2px solid #000;
+}
+
+.navbar__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 12px 16px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 12px;
+  align-items: center;
+}
+
+.brand {
+  color: var(--ink);
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.brand__title {
+  font-size: 1.05rem;
+  color: var(--ink);
+}
+
+/* Desktop nav */
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.nav__link {
+  color: var(--ink);
+  text-decoration: none;
+  font-weight: 600;
+  padding: 8px 10px;
+  border-radius: 8px;
+}
+
+.nav__link.active {
+  background: #000;
+  color: #fff;
+}
+
+.nav__link.active[color="black"] {
+  background: var(--ink);
+  color: #fff;
+}
+
+.nav__link:hover {
+  background: #919191;
+}
+
+/* Mobile hamburger */
+.nav-toggle {
+  display: none;
+  border: none;
+  background: #000;
+  color: #fff;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+}
+.nav-toggle[aria-expanded="true"] {
+  background: #dc0032;
+  color: #fff;
+}
+
+.nav-backdrop {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  .navbar__inner {
+    grid-template-columns: 1fr auto;
+  }
+
+  .nav-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .nav {
+    display: none;
+    position: static;
+    width: 100%;
+    background: transparent;
+    padding: 8px 0 0;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .nav.is-open {
+    display: flex;
+  }
+  .nav__link {
+    width: 100%;
+    padding: 10px 4px;
+  }
+
+  .nav-backdrop {
+    display: none !important;
+  }
+}
+
+/* Page content wrapper */
+.page-content {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 28px 16px 56px;
+  color: var(--ink);
+}
+
+h1 {
+  margin-bottom: 0.5rem;
+}
+h2 {
+  margin: 1rem 0 0.5rem;
+}
+ul {
+  margin-left: 1.25rem;
+}
+.muted {
+  opacity: 0.75;
+}
+.mt-1 {
+  margin-top: 0.5rem;
+}
+
+/* Resume button */
+.download-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--primary);
+  color: #fff;
+  font-weight: 700;
+  padding: 10px 16px;
+  border-radius: 999px;
+  text-decoration: none;
+}
+.download-btn:hover {
+  filter: brightness(1.05);
+}
+
+.navbar.is-open .brand__title {
+  color: #000;
+}
