@@ -8,16 +8,53 @@
 
 body {
   font-family: Arial, Helvetica, sans-serif;
-  color: #333;
-  background-color: var(--bg, #f6fbf8);
+  color: var(--text);
+  background-color: var(--bg);
 }
 :root {
-  --primary: #000000;
-  --ink: #dc0032;
-  --border: #e6eae8;
-  --bg: #f7f7f7;
+  /* LIGHT THEME (default) */
+  --bg: #f6f7f8; /* page background */
+  --surface: #ffffff; /* cards, panels */
+  --text: #111214; /* primary text */
+  --muted: #5e6367; /* secondary text */
+  --accent: #dc0032; /* DENSO red */
+  --primary: #000000; /* black used for buttons/active */
+  --border: #e6e9ec; /* subtle borders */
   --radius: 14px;
   --shadow-sm: 0 4px 14px rgba(0, 0, 0, 0.06);
+  --glass: rgba(255, 255, 255, 0.75); /* navbar glass */
+  --hover: rgba(0, 0, 0, 0.08); /* generic hover tint for light theme */
+  --ring: rgba(220, 0, 50, 0.3); /* focus ring */
+}
+
+/* DARK THEME (opt‑in via <html data-theme="dark"> ... or OS auto) */
+html[data-theme="dark"] {
+  --bg: #0f1113;
+  --surface: #16191d;
+  --text: #f2f5f7;
+  --muted: #b8c0c7;
+  --accent: #ff2e4d; /* brighter red for dark */
+  --primary: #ffffff;
+  --border: #272c31;
+  --glass: rgba(16, 18, 20, 0.68);
+  --hover: rgba(255, 255, 255, 0.12);
+  --ring: rgba(255, 46, 77, 0.45);
+}
+
+/**** Respect OS preference when no manual theme is set ****/
+@media (prefers-color-scheme: dark) {
+  html:not([data-theme]) {
+    --bg: #0f1113;
+    --surface: #16191d;
+    --text: #f2f5f7;
+    --muted: #b8c0c7;
+    --accent: #ff2e4d;
+    --primary: #ffffff;
+    --border: #272c31;
+    --glass: rgba(16, 18, 20, 0.68);
+    --hover: rgba(255, 255, 255, 0.12);
+    --ring: rgba(255, 46, 77, 0.45);
+  }
 }
 
 /* Sticky navbar */
@@ -25,9 +62,9 @@ body {
   position: sticky;
   top: 0;
   z-index: 1000;
-  background: rgba(255, 255, 255, 0.75);
+  background: var(--glass);
   backdrop-filter: blur(8px);
-  border-bottom: 2px solid #000;
+  border-bottom: 2px solid var(--primary);
 }
 
 .navbar__inner {
@@ -35,13 +72,23 @@ body {
   margin: 0 auto;
   padding: 12px 16px;
   display: grid;
-  grid-template-columns: 1fr auto;
+  grid-template-columns: 1fr auto auto;
   gap: 12px;
+}
+
+/* Center the primary links between contact (left) and controls (right) */
+.nav {
+  justify-self: center;
+}
+.controls {
+  display: flex;
   align-items: center;
+  justify-self: end;
+  gap: 10px;
 }
 
 .nav-contact {
-  color: var(--ink);
+  color: var(--text);
   font-weight: 800;
   background: none;
   text-decoration: none;
@@ -49,7 +96,36 @@ body {
 
 .nav-contact-text {
   font-size: 0.975rem;
-  color: var(--ink);
+  color: var(--text);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: var(--accent);
+  text-decoration-thickness: 2px;
+}
+.nav-contact-text:hover {
+  color: var(--accent);
+}
+
+.theme-toggle {
+  appearance: none;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+}
+.theme-toggle:hover {
+  filter: brightness(0.98);
+}
+.theme-toggle svg {
+  width: 18px;
+  height: 18px;
 }
 
 /* Desktop nav */
@@ -60,38 +136,60 @@ body {
 }
 
 .nav__link {
-  color: var(--ink);
+  color: var(--text);
   text-decoration: none;
-  font-weight: 600;
+  font-weight: 700;
   padding: 8px 10px;
   border-radius: 8px;
 }
 
 .nav__link.active {
-  background: #000;
-  color: #fff;
+  background: var(--primary);
+  color: var(--surface);
 }
-
-.nav__link.active[color="black"] {
-  background: var(--ink);
-  color: #fff;
+/* Ensure active state remains high-contrast even on hover */
+.nav__link.active,
+.nav__link[aria-current="page"],
+.nav__link.active:hover,
+.nav__link[aria-current="page"]:hover {
+  background: var(--primary);
+  color: var(--surface);
+  box-shadow: 0 0 0 1px var(--primary) inset;
 }
 
 .nav__link:hover {
-  background: #919191;
+  background: var(--hover);
+  color: var(--text);
+}
+html[data-theme="dark"] .nav__link:hover {
+  background: var(--hover);
+}
+.nav__link:hover {
+  box-shadow: 0 0 0 1px var(--border) inset;
+}
+
+/* Focus styles for keyboard users */
+.nav__link:focus-visible,
+.nav-toggle:focus-visible,
+.download-btn:focus-visible,
+.chip--action:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--ring);
+  border-radius: 10px;
 }
 
 /* Mobile hamburger */
 .nav-toggle {
   display: none;
   border: none;
-  background: #000;
-  color: #fff;
+  background: var(--primary);
+  color: var(--bg);
   width: 40px;
   height: 40px;
   border-radius: 10px;
   position: relative;
   overflow: hidden;
+  transition: background 0.2s ease, color 0.2s ease;
 }
 .nav-toggle .hamburger {
   position: relative;
@@ -103,7 +201,7 @@ body {
   left: 0;
   right: 0;
   height: 2px;
-  background: #fff;
+  background: var(--bg);
   border-radius: 2px;
   transition: transform 0.4s ease, opacity 0.4s ease, width 0.4s ease;
 }
@@ -145,6 +243,19 @@ body {
     grid-template-columns: 1fr auto;
   }
 
+  /* On mobile, keep controls (toggle + hamburger) on the right; toggle sits left of hamburger */
+  .nav {
+    grid-column: 1 / -1;
+    justify-self: stretch;
+  }
+  .controls {
+    justify-self: end;
+    gap: 8px;
+  }
+  .theme-toggle {
+    margin-right: 0; /* avoid pushing layout and accidental extra right padding */
+  }
+
   .nav-toggle {
     display: inline-flex;
     align-items: center;
@@ -167,7 +278,7 @@ body {
     gap: 8px;
   }
   .nav.is-open {
-    max-height: 60vh; /* enough space for links */
+    max-height: 70vh; /* enough space for links */
     opacity: 1;
     transform: translateY(0);
     padding: 8px 0 0;
@@ -177,6 +288,10 @@ body {
     max-width: 520px;
     text-align: center;
     padding: 10px 4px;
+    border: 1px solid transparent;
+  }
+  .nav__link.active {
+    border-color: var(--border);
   }
 
   .nav-backdrop {
@@ -191,6 +306,9 @@ body {
   padding: 28px 16px 56px;
   color: var(--ink);
 }
+.page-content {
+  color: var(--text);
+}
 
 h1 {
   margin-bottom: 0.5rem;
@@ -202,10 +320,20 @@ ul {
   margin-left: 1.25rem;
 }
 .muted {
-  opacity: 0.75;
+  color: var(--muted);
+  opacity: 1;
 }
 .mt-1 {
   margin-top: 0.5rem;
+}
+
+.page-content h1,
+.section-header h1 {
+  color: var(--accent);
+}
+.page-content h2,
+.page-content h3 {
+  color: var(--text);
 }
 
 /* Resume button */
@@ -214,7 +342,7 @@ ul {
   align-items: center;
   justify-content: center;
   background: var(--primary);
-  color: #fff;
+  color: var(--surface);
   font-weight: 700;
   padding: 10px 16px;
   border-radius: 999px;
@@ -226,7 +354,7 @@ ul {
 }
 
 .navbar.is-open .nav-contact-text {
-  color: #000;
+  color: var(--text);
 }
 
 /* --- Readability & link polish for timeline cards --- */
@@ -239,14 +367,21 @@ ul {
 }
 
 .timeline .tl-card {
-  background: #fff;
+  background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius);
   box-shadow: var(--shadow-sm);
   padding: 16px 18px;
+  color: var(--text);
+}
+
+html[data-theme="dark"] .timeline .tl-card,
+html[data-theme="dark"] .card {
+  border-color: #2a2f35;
 }
 
 .tl-title {
+  color: var(--text);
   font-weight: 800;
   line-height: 1.35;
   margin: 0 0 8px;
@@ -255,8 +390,8 @@ ul {
 .tl-date {
   display: inline-block;
   margin-right: 10px;
-  background: #000;
-  color: #fff;
+  background: var(--primary);
+  color: var(--surface);
   padding: 4px 10px;
   border-radius: 999px;
   font-size: 0.85rem;
@@ -271,11 +406,12 @@ ul {
   margin: 8px 0;
   line-height: 1.7;
   font-size: 1.02rem;
+  color: var(--text);
 }
 
 /* External links inside cards */
 .tl-card a.ext-link {
-  color: var(--ink);
+  color: var(--accent);
   text-decoration: underline;
   text-underline-offset: 3px;
 }
@@ -308,7 +444,7 @@ ul {
 
 /* Reusable card skin (timeline cards already have .tl-card) */
 .card {
-  background: #fff;
+  background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius);
   box-shadow: var(--shadow-sm);
@@ -353,8 +489,7 @@ ul {
   align-items: center;
   border-radius: 999px;
   padding: 6px 10px;
-  border: 1px solid var(--border);
-  background: #fff;
+  border: 2px solid var(--accent);
   font-weight: 600;
   box-shadow: var(--shadow-sm);
 }
@@ -393,18 +528,31 @@ ul {
   margin-top: 10px;
 }
 .chip--action {
-  background: #000;
-  color: #fff;
+  background: var(--accent);
+  color: var(--surface);
   text-decoration: none;
   border: none;
+  padding: 10px 16px;
+  border-radius: 20px;
+  font-weight: 600;
+  transition: all 0.2s ease-in-out;
+  margin-right: 8px;
+  display: inline-block;
 }
-.chip--action:hover {
-  filter: brightness(1.05);
+.chip--action:hover,
+.chip--action:focus {
+  color: var(--primary);
+  background: var(--bg);
+}
+html[data-theme="dark"] .chip--action:hover,
+html[data-theme="dark"] .chip--action:focus {
+  background: var(--primary);
+  color: var(--bg); /* surface on dark */
 }
 
 /* Generic external link style (beyond timeline cards) */
 .ext-link {
-  color: var(--ink);
+  color: var(--accent);
   text-decoration: underline;
   text-underline-offset: 3px;
 }
@@ -432,22 +580,87 @@ ul {
   }
 }
 
-.chip--action {
-  background: var(--ink);
-  color: white;
-  padding: 10px 16px;
-  border-radius: 20px;
-  font-weight: 600;
-  transition: all 0.2s ease-in-out;
-  margin-right: 8px;
-  display: inline-block;
-  text-decoration: none;
+/* Stop any accidental horizontal scroll on small devices */
+html,
+body {
+  overflow-x: hidden;
 }
 
-.chip--action:hover,
-.chip--action:focus {
-  background: var(--primary);
-  filter: brightness(1.1);
-  transform: scale(1.05);
-  text-decoration: none;
+/* --- NAV LAYOUT --------------------------------------------------- */
+.navbar__inner {
+  /* contact (left) | links (center) | controls (right) */
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 12px 16px;
+  gap: 12px;
+}
+
+/* Center the nav links; push controls to the far right */
+.nav {
+  justify-self: center;
+}
+.controls {
+  display: flex;
+  align-items: center;
+  justify-self: end;
+  gap: 16px; /* <<< gives ~16px between toggle & hamburger */
+}
+
+/* Keep the controls from shrinking and causing layout jitter */
+.nav-toggle,
+.theme-toggle {
+  flex-shrink: 0;
+}
+
+/* Prevent any width creep on links */
+.nav__link {
+  box-sizing: border-box;
+}
+
+@media (max-width: 900px) {
+  .navbar__inner {
+    grid-template-columns: 1fr auto; /* content | controls */
+  }
+
+  /* Links expand below the bar; controls stay at far right */
+  .nav {
+    grid-column: 1 / -1;
+    justify-self: stretch;
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden; /* <<< prevents tiny overflow that caused the right gap */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+
+    /* animated expand */
+    position: static;
+    padding: 0;
+    max-height: 0;
+    opacity: 0;
+    transform: translateY(-4px);
+    transition: max-height 0.2s ease, opacity 0.3s ease, transform 0.3s ease;
+  }
+  .nav.is-open {
+    max-height: 70vh;
+    opacity: 1;
+    transform: translateY(0);
+    padding-top: 8px;
+  }
+
+  .controls {
+    justify-self: end; /* lives at the far right */
+    gap: 16px; /* toggle ⇢ 16px ⇢ hamburger */
+  }
+
+  .nav__link {
+    max-width: 520px;
+    width: 100%;
+    text-align: center;
+    padding: 10px 4px;
+  }
 }

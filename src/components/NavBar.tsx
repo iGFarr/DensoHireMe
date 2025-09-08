@@ -1,12 +1,19 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
+import type { Theme } from "../App";
 
-const NavBar: React.FC = () => {
+type NavBarProps = {
+  theme: Theme;
+  onToggleTheme: () => void;
+};
+
+const NavBar: React.FC<NavBarProps> = ({ theme, onToggleTheme }) => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
     <header className={`navbar ${menuOpen ? "is-open" : ""}`}>
       <div className="navbar__inner">
+        {/* Left: contact */}
         <div className="nav-contact">
           <a
             href="tel:8656596974"
@@ -19,31 +26,65 @@ const NavBar: React.FC = () => {
             isaacgfarr@live.com
           </a>
         </div>
-        <button
-          className="nav-toggle"
-          aria-label="Toggle navigation"
-          aria-expanded={menuOpen}
-          onClick={() => setMenuOpen((v) => !v)}
-        >
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
-            {menuOpen ? (
-              <path
-                d="M4 12h16"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-              />
-            ) : (
-              <path
-                d="M3 6h18M3 12h18M3 18h18"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-              />
-            )}
-          </svg>
-        </button>
 
+        {/* Push the following controls to the far right */}
+        <div className="controls">
+          {/* Theme toggle sits to the left of the hamburger on mobile; far right on desktop */}
+          <button
+            className="theme-toggle"
+            type="button"
+            aria-label={`Switch to ${
+              theme === "dark" ? "light" : "dark"
+            } theme`}
+            aria-pressed={theme === "dark"}
+            onClick={onToggleTheme}
+          >
+            {/* simple moon/sun glyph swap */}
+            {theme === "dark" ? (
+              <svg
+                viewBox="0 0 24 24"
+                width="18"
+                height="18"
+                aria-hidden="true"
+              >
+                <path
+                  d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 1 0 9.79 9.79z"
+                  fill="currentColor"
+                />
+              </svg>
+            ) : (
+              <svg
+                viewBox="0 0 24 24"
+                width="18"
+                height="18"
+                aria-hidden="true"
+              >
+                <path
+                  d="M12 4V2m0 20v-2M4 12H2m20 0h-2M5.64 5.64L4.22 4.22m15.56 15.56-1.42-1.42M18.36 5.64l1.42-1.42M4.22 19.78l1.42-1.42"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                />
+                <circle cx="12" cy="12" r="4" fill="currentColor" />
+              </svg>
+            )}
+          </button>
+
+          <button
+            className="nav-toggle"
+            aria-label="Toggle navigation"
+            aria-expanded={menuOpen}
+            onClick={() => setMenuOpen((v) => !v)}
+          >
+            <span className="hamburger" aria-hidden="true">
+              <span className="bar bar1" />
+              <span className="bar bar2" />
+              <span className="bar bar3" />
+            </span>
+          </button>
+        </div>
+
+        {/* Menu */}
         <nav id="primary-nav" className={`nav ${menuOpen ? "is-open" : ""}`}>
           <NavLink
             to="/"
@@ -72,7 +113,6 @@ const NavBar: React.FC = () => {
         </nav>
       </div>
 
-      {/* Backdrop for mobile menu */}
       <div
         className={`nav-backdrop ${menuOpen ? "is-visible" : ""}`}
         onClick={() => setMenuOpen(false)}
