@@ -5,7 +5,8 @@ const MyDensoHistory: React.FC = () => (
     <header className="section-header">
       <h1>My DENSO History</h1>
       <p className="muted">
-        From my first day in Plant 102 to my current role in Plant 203.
+        From my first day Crafting The Core in Plant 102 to my current role in
+        Plant 203.
       </p>
     </header>
 

@@ -149,6 +149,26 @@ const SkillsExperience: React.FC = () => {
                   Worked in a collaborative code‑review culture using Git and
                   iterative delivery.
                 </li>
+                <li>
+                  Learn more: {""}
+                  <a
+                    className="ext-link"
+                    href="https://apps.apple.com/us/app/ally-bank-auto-invest/id514374715"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    iOS
+                  </a>{" "}
+                  |{" "}
+                  <a
+                    className="ext-link"
+                    href="https://play.google.com/store/apps/details?id=com.ally.MobileBanking&hl=en_US"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Android
+                  </a>
+                </li>
               </ul>
             </article>
 
