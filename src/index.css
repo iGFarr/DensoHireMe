@@ -491,6 +491,7 @@ html[data-theme="dark"] .card {
   padding: 6px 10px;
   border: 2px solid var(--accent);
   font-weight: 600;
+  font-size: small;
   box-shadow: var(--shadow-sm);
 }
 
@@ -663,4 +664,16 @@ body {
     text-align: center;
     padding: 10px 4px;
   }
+}
+
+/* Fixed navbar (replaces any previous .navbar position rules) */
+.navbar {
+  position: fixed; /* pin to viewport */
+  top: env(safe-area-inset-top, 0); /* iOS notch-friendly */
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: var(--glass);
+  backdrop-filter: blur(8px);
+  border-bottom: 2px solid var(--primary);
 }
