@@ -317,6 +317,7 @@ const SkillsExperience: React.FC = () => {
           aria-label="Project links"
           className="section-block"
         >
+          <h2>Websites</h2>
           <div className="grid-2">
             <article className="card">
               <h3>DensoHireMe.com (this site)</h3>
@@ -329,6 +330,25 @@ const SkillsExperience: React.FC = () => {
                   rel="noopener noreferrer"
                 >
                   GitHub Repository
+                </a>
+              </p>
+            </article>
+          </div>
+          <div className="grid-2">
+            <article className="card">
+              <h3>MaryvilleMassageWorks.com</h3>
+              <p>
+                React + TypeScript, deployed on Vercel for a friend who needed a
+                webpage for their business.
+              </p>
+              <p>
+                <a
+                  className="ext-link"
+                  href="https://maryvillemassageworks.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Visit
                 </a>
               </p>
             </article>
