@@ -25,16 +25,6 @@ const Contact: React.FC = () => (
           linkedin.com/in/juniordevisaac
         </a>
       </li>
-      <li>
-        <strong>GitHub:</strong>{" "}
-        <a
-          href="https://github.com/iGFarr"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          github.com/iGFarr
-        </a>
-      </li>
     </ul>
   </main>
 );
