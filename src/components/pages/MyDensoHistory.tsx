@@ -177,6 +177,11 @@ const MyDensoHistory: React.FC = () => (
         </div>
       </article>
     </section>
+    <div className="next-section">
+      <a href="/skills" className="next-btn">
+        View Skills & Experience →
+      </a>
+    </div>
   </main>
 );
 

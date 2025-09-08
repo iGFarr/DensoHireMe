@@ -7,9 +7,12 @@
 }
 
 body {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-body);
   color: var(--text);
   background-color: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: "tnum" 1, "liga" 1;
 }
 :root {
   /* LIGHT THEME (default) */
@@ -25,6 +28,14 @@ body {
   --glass: rgba(255, 255, 255, 0.75); /* navbar glass */
   --hover: rgba(0, 0, 0, 0.08); /* generic hover tint for light theme */
   --ring: rgba(220, 0, 50, 0.3); /* focus ring */
+
+  /* Typography */
+  --font-heading: "Barlow Condensed", ui-sans-serif, system-ui, -apple-system,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans",
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  --font-body: "Barlow", ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans",
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
 
 /* DARK THEME (opt‑in via <html data-theme="dark"> ... or OS auto) */
@@ -39,6 +50,13 @@ html[data-theme="dark"] {
   --glass: rgba(16, 18, 20, 0.68);
   --hover: rgba(255, 255, 255, 0.12);
   --ring: rgba(255, 46, 77, 0.45);
+
+  --font-heading: "Barlow Condensed", ui-sans-serif, system-ui, -apple-system,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans",
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  --font-body: "Barlow", ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans",
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
 
 /**** Respect OS preference when no manual theme is set ****/
@@ -304,6 +322,7 @@ html[data-theme="dark"] .nav__link:hover {
   max-width: 900px;
   margin: 0 auto;
   padding: 28px 16px 56px;
+  padding-top: 120px;
   color: var(--ink);
 }
 .page-content {
@@ -573,6 +592,72 @@ html[data-theme="dark"] .chip--action:focus {
   margin: 0.3rem 0 0.8rem;
 }
 
+/* ==========================
+   Next Section CTA (bottom of page)
+   ========================== */
+
+.next-section {
+  margin: 28px 0 0;
+  display: flex;
+  justify-content: center;
+}
+
+.next-section .next-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px 18px;
+  box-shadow: var(--shadow-sm);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.next-section .next-label {
+  color: var(--muted);
+  font-size: 0.95rem;
+  margin-right: 6px;
+}
+
+.next-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 14px;
+  background: var(--accent);
+  color: var(--surface);
+  font-weight: 700;
+  text-decoration: none;
+  border-radius: 999px;
+  border: 2px solid transparent;
+  transition: transform 0.15s ease, filter 0.15s ease, background 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.next-btn:hover {
+  filter: brightness(0.96);
+  transform: translateY(-1px);
+}
+
+.next-btn:active {
+  transform: translateY(0);
+}
+
+.next-btn:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--ring);
+}
+
+.next-btn__icon {
+  line-height: 0;
+  font-size: 1.1em;
+}
+
+html[data-theme="dark"] .next-section .next-card {
+  border-color: #2a2f35;
+}
+
 /* Respect prefers-reduced-motion */
 @media (prefers-reduced-motion: reduce) {
   .nav,
@@ -619,6 +704,48 @@ body {
 /* Prevent any width creep on links */
 .nav__link {
   box-sizing: border-box;
+}
+
+/* Typography for headings and nav */
+h1,
+h2,
+h3,
+.navbar .nav__link,
+.section-header h1,
+.brand__title {
+  font-family: var(--font-heading);
+  letter-spacing: 0.01em;
+}
+h1 {
+  font-weight: 800;
+}
+h2 {
+  font-weight: 700;
+}
+h3 {
+  font-weight: 600;
+}
+/* Slightly condensed all-caps style for nav for a DENSO-like feel */
+.navbar .nav__link {
+  text-transform: none;
+  font-weight: 700;
+}
+
+/* Ensure buttons and chips inherit the body font */
+.download-btn,
+.chip,
+.chip--action,
+.theme-toggle,
+.nav-toggle {
+  font-family: var(--font-body);
+}
+
+code,
+kbd,
+samp,
+.chip,
+.exp__meta {
+  font-feature-settings: "tnum" 1;
 }
 
 @media (max-width: 900px) {
