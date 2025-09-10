@@ -402,7 +402,7 @@ const SkillsExperience: React.FC = () => {
             <article className="card">
               <h3>Tower Defense 3D Fusion (Windows)</h3>
               <p>
-                3D tower defense game combining strategy and face paced gameplay
+                3D tower defense game combining strategy and fast paced gameplay
                 with special hero mechanics.
               </p>
               <p>
